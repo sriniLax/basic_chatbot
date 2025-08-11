@@ -1,10 +1,10 @@
-from config import MODEL_SPECS, GROQ_API_KEY
+from config import MODEL_SPECS, GEMINI_API_KEY
 from helper import logger
-from langchain_groq import ChatGroq
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 
-llm = ChatGroq(
-    api_key=GROQ_API_KEY,
+llm = ChatGoogleGenerativeAI(
+    api_key=GEMINI_API_KEY,
     model=MODEL_SPECS["model"],
     max_tokens=MODEL_SPECS["max_tokens"],
     timeout=MODEL_SPECS["timeout"],
@@ -16,13 +16,13 @@ def run_llm(messages):
     """Runs the language model with the given messages and returns the response."""
     response = llm.invoke(messages)
 
-    meta_data = response.response_metadata
+    # meta_data = response.response_metadata
 
-    logger.info(meta_data)
+    logger.info(response.usage_metadata)
 
-    logger.info(f"Model name: {meta_data['model_name']}")
-    logger.info(f"Input tokens: {meta_data['token_usage']['prompt_tokens']}")
-    logger.info(f"Output tokens: {meta_data['token_usage']['completion_tokens']}")
-    logger.info(f"Time taken: {meta_data['token_usage']['total_time']}")
+    logger.info(f"Model name: {MODEL_SPECS['model']}")
+    logger.info(f"Input tokens: {response.usage_metadata['input_tokens']}")
+    logger.info(f"Output tokens: {response.usage_metadata['output_tokens']}")
+    # logger.info(f"Time taken: {meta_data['token_usage']['total_time']}")
 
     return response.content

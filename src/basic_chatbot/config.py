@@ -19,8 +19,8 @@ MODEL_SPECS = {
 }
 
 
-GROQ_API_KEY = keyvault.GROQ_API_KEY
-if GROQ_API_KEY:
-    logger.info("GROQ API Key loaded successfully.")
+GEMINI_API_KEY = keyvault.GEMINI_API_KEY
+if GEMINI_API_KEY:
+    logger.info("GEMINI API Key loaded successfully.")
 else:
-    logger.warning("GROQ API Key not found. Please check your keyvault setup.")
+    logger.warning("GEMINI API Key not found. Please check your keyvault setup.")

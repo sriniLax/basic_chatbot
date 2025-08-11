@@ -19,13 +19,11 @@
         "**/.git": true,
         "**/.DS_Store": true,
         "**/__pycache__": true,
-        "**/.venv": true,
         "**/.pytest_cache": true
     },
 
     // Exclude common Python folders from search results to reduce noise.
     "search.exclude": {
-        "**/.venv": true,
         "**/__pycache__": true,
         "**/.vscode": true
     },
